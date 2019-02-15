@@ -1,12 +1,10 @@
 package com.cgavlabs.golftice
 
 import android.os.Bundle
-import android.transition.ChangeBounds
-import android.transition.TransitionManager
-import android.view.animation.OvershootInterpolator
+import android.transition.Fade
+import android.view.Window
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintSet
 import com.cgavlabs.golftice.challenges.ChallengeActivity
 import com.cgavlabs.golftice.common.launch
 import com.cgavlabs.golftice.more.MoreActivity
@@ -16,6 +14,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_base.*
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    private val fadeTransition = buildFadeTransition()
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
@@ -29,6 +29,12 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        with(window) {
+            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+            window.allowEnterTransitionOverlap
+            enterTransition = fadeTransition
+            exitTransition = fadeTransition
+        }
         setContentView(R.layout.activity_base)
         setSupportActionBar(toolbar)
         navigation.selectedItemId = selectedBottomNavId()
@@ -51,18 +57,13 @@ abstract class BaseActivity : AppCompatActivity() {
         supportActionBar?.title = title
     }
 
-    private fun animateBottomNavBar() {
-        val constraints = ConstraintSet()
-        constraints.clone(container)
-        constraints.clear(R.id.navigation, ConstraintSet.TOP)
-        constraints.clear(R.id.navigation, ConstraintSet.BOTTOM)
-        constraints.connect(R.id.navigation, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
-
-        val changeBounds = ChangeBounds()
-        changeBounds.interpolator = OvershootInterpolator(2f)
-        changeBounds.duration = 300
-        TransitionManager.beginDelayedTransition(container, changeBounds)
-        constraints.applyTo(container)
+    private fun buildFadeTransition(): Fade {
+        val fadeTransition = Fade()
+        fadeTransition.excludeTarget(R.id.navigation, true)
+        fadeTransition.excludeTarget(R.id.toolbar_container, true)
+        fadeTransition.excludeTarget(android.R.id.statusBarBackground, true)
+        fadeTransition.excludeTarget(android.R.id.navigationBarBackground, true)
+        return fadeTransition
     }
 
 }

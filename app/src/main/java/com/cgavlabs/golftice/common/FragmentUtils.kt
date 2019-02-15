@@ -1,5 +1,6 @@
 package com.cgavlabs.golftice.common
 
+import androidx.annotation.Nullable
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 
@@ -10,6 +11,7 @@ import androidx.fragment.app.Fragment
  *
  * @return Returns an instance of Fragment as the specified generic type with the params applied as arguments
  */
-inline fun <reified T : Fragment> instanceOf(vararg params: Pair<String, Any>) = T::class.java.newInstance().apply {
-    arguments = bundleOf(*params)
-}
+inline fun <reified T : Fragment> instanceOf(@Nullable vararg params: Pair<String, Any>): T =
+    T::class.java.newInstance().apply {
+        arguments = bundleOf(*params)
+    }

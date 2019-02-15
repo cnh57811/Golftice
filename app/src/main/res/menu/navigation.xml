@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_challenges"
+        android:icon="@drawable/ic_golf_course"
+        android:title="@string/challenges_text" />
+
+    <item
+        android:id="@+id/navigation_routines"
+        android:icon="@drawable/ic_playlist_play"
+        android:title="@string/routines_text" />
+
+    <item
+        android:id="@+id/navigation_trends"
+        android:icon="@drawable/ic_trending"
+        android:title="@string/trends_text" />
+
+    <item
+        android:id="@+id/navigation_more"
+        android:icon="@drawable/ic_more_horiz"
+        android:title="@string/more_text" />
+
+</menu>

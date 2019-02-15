@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Golftice</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="challenges_text">Challenges</string>
+    <string name="more_text">More</string>
+    <string name="routines_text">Routines</string>
+    <string name="trends_text">Trends</string>
+</resources>

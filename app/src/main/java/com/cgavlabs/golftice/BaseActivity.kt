@@ -15,8 +15,6 @@ import kotlinx.android.synthetic.main.activity_base.*
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    private val fadeTransition = buildFadeTransition()
-
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_challenges -> launch<ChallengeActivity>()
@@ -29,17 +27,10 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        with(window) {
-            requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
-            window.allowEnterTransitionOverlap
-            enterTransition = fadeTransition
-            exitTransition = fadeTransition
-        }
         setContentView(R.layout.activity_base)
         setSupportActionBar(toolbar)
         navigation.selectedItemId = selectedBottomNavId()
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        setToolbarTitle(this::class.java.simpleName)
     }
 
     @IdRes
@@ -55,15 +46,6 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun setToolbarTitle(title: String) {
         supportActionBar?.title = title
-    }
-
-    private fun buildFadeTransition(): Fade {
-        val fadeTransition = Fade()
-        fadeTransition.excludeTarget(R.id.navigation, true)
-        fadeTransition.excludeTarget(R.id.toolbar_container, true)
-        fadeTransition.excludeTarget(android.R.id.statusBarBackground, true)
-        fadeTransition.excludeTarget(android.R.id.navigationBarBackground, true)
-        return fadeTransition
     }
 
 }

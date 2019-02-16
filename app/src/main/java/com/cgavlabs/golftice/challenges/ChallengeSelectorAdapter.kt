@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cgavlabs.golftice.R
 import com.cgavlabs.golftice.challenges.models.Challenge
@@ -41,8 +42,10 @@ internal class ChallengeSelectorAdapter : RecyclerView.Adapter<ChallengeSelector
     }
 
     override fun onBindViewHolder(holder: ChallengeSelectorViewHolder, position: Int) {
-        holder.title.text = distinctChallengeTypes[position].name
-//        holder.recyclerView.ada
+        val challengeType = distinctChallengeTypes[position]
+        holder.title.text = challengeType.name
+        holder.recyclerView.adapter = ChallengeSelectorItemAdapter(challenges.filter { it.type == challengeType })
+        holder.recyclerView.layoutManager = LinearLayoutManager(holder.itemView.context, RecyclerView.HORIZONTAL, false)
     }
 
     internal class ChallengeSelectorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

@@ -7,4 +7,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.FadeActivity" parent="AppTheme">
+        <item name="android:windowEnterTransition">@transition/fade_activity</item>
+        <item name="android:windowExitTransition">@transition/fade_activity</item>
+    </style>
+
 </resources>

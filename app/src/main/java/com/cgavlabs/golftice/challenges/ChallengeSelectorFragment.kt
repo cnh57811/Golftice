@@ -33,11 +33,11 @@ class ChallengeSelectorFragment : Fragment() {
         val challenges: MutableList<Challenge> = mutableListOf()
         for (i in 1..35) {
             when {
-                i <= 5 -> {
+                i <= 4 -> {
                     val challenge = Challenge("Challenge Name #$i", ChallengeType.PUTTING)
                     challenges.add(challenge)
                 }
-                i <= 10 -> {
+                i <= 11 -> {
                     val challenge = Challenge("Challenge Name #$i", ChallengeType.CHIPPING)
                     challenges.add(challenge)
                 }
@@ -45,19 +45,19 @@ class ChallengeSelectorFragment : Fragment() {
                     val challenge = Challenge("Challenge Name #$i", ChallengeType.PITCHING)
                     challenges.add(challenge)
                 }
-                i <= 20 -> {
+                i <= 18 -> {
                     val challenge = Challenge("Challenge Name #$i", ChallengeType.BUNKERS)
                     challenges.add(challenge)
                 }
-                i <= 25 -> {
+                i <= 23 -> {
                     val challenge = Challenge("Challenge Name #$i", ChallengeType.IRONS)
                     challenges.add(challenge)
                 }
-                i <= 30 -> {
+                i <= 29 -> {
                     val challenge = Challenge("Challenge Name #$i", ChallengeType.DRIVER)
                     challenges.add(challenge)
                 }
-                i <= 35 -> {
+                i <= 31 -> {
                     val challenge = Challenge("Challenge Name #$i", ChallengeType.GAME)
                     challenges.add(challenge)
                 }
